@@ -4,23 +4,21 @@ class CLI
     #interacts with user 
         #ask the user what skin type do they have (options :dry, oily, combination)
         #ask the user what kind of finish they would like (options: dewy, satin, matte)
-        #ask the user what kind of coverage (full, medium, light)
     #returns any puts or gets statement
-
     #controls the flow of our program
-
-    
     def start 
         puts "Welcome"
         tab 
         API.fetch_makeup
+        # API.list 
         #take us to another method in your CLI
         self.menu
     end
-
+    
     def menu
         puts "What is you favorite feature on your face?"
         sleep 1
+        space 
         puts "Option 1: Eyes (That's your money maker!)"
         sleep 1
         puts "Option 2: Lips (Those lips were made for talking...)"
@@ -49,28 +47,29 @@ class CLI
            goodbye_smart
         end
     end
-  
 
     def display_all_the_makeup
         #access all the makeup
         #print each one out
-        MakeUp.all.each do |makeup|
-            puts makeup.name
+        MakeUp.all.each_with_index do |makeup, index|
+            puts "#{index + 1}. #{makeup.name}"
         end
     end
 
     def eyes
         puts "You have goregous eyes!"
-        sleep 2
+        sleep 1
         puts "I think EYE have the perfect product for you!"
-        sleep 2
+        sleep 1
         puts "Do you want to take a look?"
-        sleep 2
+        sleep 1
         puts " "
         user_input1 = gets.chomp.downcase 
-        if user_input1.include?("yes") || user_input1 == "y"
+        if user_input1.include?(" yes ") || user_input1.include?(" y ") 
             puts "Great! I love this product!"
-            ##puts product
+            space 
+            eyeliner
+            goodbye 
         else
             goodbye
         end
@@ -81,16 +80,24 @@ class CLI
         space 
         puts "Do we like a glossy fun lip or do we prefer a sophistcated lip."
         space 
-        lip_choice == gets.chomp.downcase
+        lip_choice = gets.chomp.downcase
             if lip_choice.include?("fun") || lip_choice.include?("glossy")
                 puts "You have to try this!"
-                ##puts the lip gloss
+                space 
+                lipgloss 
+                goodbye
             elsif lip_choice.include?("sophisticated")
                 puts "I think this would be your speed!"
-                ##puts product
+                space 
+                lipstick 
+                goodbye
             elsif lip_choice.include?("both") || lip_choice.include?("combination")
                 puts "I love this mentality! Here is the information for both!"
-                ##puts both products
+                space 
+                lipstick 
+                puts "&"
+                lipgloss 
+                goodbye
             else
                 goodbye
             end
@@ -112,22 +119,28 @@ class CLI
         space 
             if skin_info.include?("dry") && skin_info.include?("matte")
                 puts "You want to load up on moisturizer first, but this would be your perfect product."
-                ##puts product 
+                foundation_stick
+                goodbye
             elsif skin_info.include?("oily") && skin_info.include?("matte")
                 puts "This one was designed for you!"
-                ##puts product
+                foundation_stick
+                goodbye
             elsif skin_info.include?("dry") && skin_info.include?("dewy")
                 puts "This one was designed for you!"
-                ##puts product
+                foundation
+                goodbye
             elsif skin_info.include?("oily") && skin_info.include?("dewy")
                 puts "Hmm, I would put on a mattifying primer first, but this product would work!"
-                ##puts product 
+                foundation
+                goodbye
             elsif skin_info.include?("combo") && skin_info.include?("dewy")
                 puts "Hmm, I would put on a mattifying primer first, but this product would work!"
-                ##puts product
+                foundation
+                goodbye
             elsif skin_info.include?("combo") && skin_info.include?("matte")
                 puts "This one was designed for you!"
-                ##puts product
+                foundation_stick
+                goodbye
             else
                 puts "Hmm, did you make a mistake?"
                 puts " "
@@ -148,9 +161,6 @@ class CLI
                         puts "My free gift is waisting your time like you have waisted mine. Have a nice day!"
                     end
             end
-
-
-
     end
 
     def face
@@ -162,19 +172,63 @@ class CLI
         if user_input2.include?("yes") || user_input2 == "y"
             self.display_all_the_makeup
             space 
-            sleep 1
             options
-        elsif user_input2.include?("maybe")
+        elsif user_input2.include?("maybe") || user_input2.include?("idk") || user_input2 == ("I don't know") || user_input2 == ("I dont know")
             puts "Come on!! Knowledge is beauty. Knowledge is Power. Beauty = Power!!"
+            puts "Go ahead and say yes! I know you want to!"
+            space
             user_input3 = gets.chomp.downcase 
             if user_input3.include?("yes") || user_input3 == "y"
+                space 
                 self.display_all_the_makeup 
+                sleep 1 
+                options 
             else  
                 goodbye
             end
         else
             goodbye 
         end
+    end
+
+    def choice_of_product
+        space 
+        puts "Which one were you interested in looking at?"
+        space
+        product_choice = gets.chomp.downcase
+        if product_choice.include?("lipstick") || product_choice == "1"
+            lipstick
+        elsif product_choice.include?("eyeliner") || product_choice == "2"
+            eyeliner
+        elsif product_choice.include?("lip gloss") || product_choice.include?("lip glitter") || product_choice == "3"
+            lipgloss
+        elsif product_choice.include?("match stix") || product_choice.include?("matte skinstick") || product_choice == "4"
+            foundation_stick
+        elsif product_choice.include?("pro") || product_choice.include?("soft") || product_choice == "foundation" || product_choice == "5"
+            foundation
+        else
+            goodbye
+        end 
+    end
+
+    def lipstick
+        MakeUp.select_product("lipstick")
+    end
+
+    def lipgloss
+        MakeUp.select_product_uniq("lip_gloss")
+    end
+
+    def eyeliner
+        MakeUp.select_product("eyeliner")
+    end
+
+    def foundation
+        MakeUp.select_product("foundation")
+    end
+
+    def foundation_stick
+        MakeUp.select_product_uniq("concealer")
     end
 
     def encouragement
@@ -198,36 +252,27 @@ class CLI
     end
 
     def options
-        puts "We have two options for foundations and for lips!"
-        sleep 2
-        puts "Do you need help picking out a foundation or a lip product?"
-        puts " "
-        user_input_product = gets.chomp.downcase 
-        puts " "
-        if user_input_product.include?("foundation") && user_input_product.include?("lip") || user_input_product.include?("both") 
-            puts "I am sorry. We can only look at one at a time."
-            sleep 2
-            puts "Let's go back and choose another option."
-            sleep 2
-            space 
-            options 
-        elsif user_input_product.include?("foundation") 
-            self.skin
-        elsif user_input_product.include?("lip")
-            self.lips 
-        elsif user_input_product.include?("no")
-            puts "No problem. You are quite the makeup expert! I hope you enjoy your shopping!"
-        else
-            goodbye_smart
+        puts "Quite a few choices." 
+        sleep 1
+        puts "Did you you want to look at one specifically?"
+        sleep 1
+        space 
+        choice = gets.chomp.downcase 
+        if choice.include?("yes") || choice == "yes"
+            choice_of_product
+        else 
+            goodbye
         end
-    end 
+    end
     
     def goodbye
+        space
+        sleep 1
         puts "Would you like to go back to the main menu?"
         space
         user_resp = gets.chomp.downcase
         space
-        if user_resp.includes("yes") || user_resp == "y" || user_resp.include?("I don't know") || user_resp.include?("idk") || user_resp.include?("not sure")
+        if user_resp.include?("yes") || user_resp == "y" || user_resp.include?("I don't know") || user_resp.include?("idk") || user_resp.include?("not sure")
             puts "That's okay! Let's go back to the menu!"
             tab
             menu
