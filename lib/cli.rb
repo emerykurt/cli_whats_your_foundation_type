@@ -65,10 +65,28 @@ class CLI
         sleep 1
         puts " "
         user_input1 = gets.chomp.downcase 
-        if user_input1.include?(" yes ") || user_input1.include?(" y ") 
-            puts "Great! I love this product!"
+        if user_input1.include?("yes") || user_input1.include?("y") 
             space 
+            puts "Great! I love this product!"
+            space
+            sleep 1 
             eyeliner
+            space 
+            sleep 1
+            puts "Would you like the product info?"
+            space
+            user_resp = gets.chomp.downcase 
+                if user_resp.include?("yes")
+                    space
+                    sleep 1
+                    eyeliner
+                    space 
+                    eyeliner_info
+                    sleep 2
+                    goodbye
+                else
+                    goodbye
+                end
             goodbye 
         else
             goodbye
@@ -85,19 +103,69 @@ class CLI
                 puts "You have to try this!"
                 space 
                 lipgloss 
-                goodbye
+                space 
+                sleep 1
+                puts "Would you like the product info?"
+                space
+                user_resp = gets.chomp.downcase 
+                    if user_resp.include?("yes")
+                        space
+                        sleep 1
+                        lipgloss
+                        space 
+                        lipgloss_info
+                        sleep 2
+                        goodbye
+                    else
+                        goodbye
+                    end
             elsif lip_choice.include?("sophisticated")
                 puts "I think this would be your speed!"
                 space 
                 lipstick 
-                goodbye
+                space 
+                sleep 1
+                puts "Would you like the product info?"
+                space
+                user_resp = gets.chomp.downcase 
+                    if user_resp.include?("yes")
+                        space
+                        sleep 1
+                        lipstick
+                        space 
+                        lipstick_info
+                        sleep 2
+                        goodbye
+                    else
+                        goodbye
+                    end
             elsif lip_choice.include?("both") || lip_choice.include?("combination")
                 puts "I love this mentality! Here is the information for both!"
                 space 
                 lipstick 
                 puts "&"
                 lipgloss 
-                goodbye
+                space 
+                sleep 1
+                puts "Would you like the product info?"
+                space
+                user_resp = gets.chomp.downcase 
+                    if user_resp.include?("yes")
+                        space
+                        sleep 1
+                        lipstick
+                        space 
+                        lipstick_info
+                        space
+                        space
+                        lipgloss
+                        space
+                        lipgloss_info
+                        sleep 2
+                        goodbye
+                    else
+                        goodbye
+                    end
             else
                 goodbye
             end
@@ -119,28 +187,126 @@ class CLI
         space 
             if skin_info.include?("dry") && skin_info.include?("matte")
                 puts "You want to load up on moisturizer first, but this would be your perfect product."
+                sleep 1
+                space 
                 foundation_stick
-                goodbye
+                space 
+                sleep 1
+                puts "Would you like the product info?"
+                space
+                user_resp = gets.chomp.downcase 
+                    if user_resp.include?("yes")
+                        space
+                        sleep 1
+                        foundation_stick
+                        space 
+                        foundation_stick_info
+                        sleep 2
+                        space 
+                        goodbye
+                    else
+                        goodbye
+                    end
             elsif skin_info.include?("oily") && skin_info.include?("matte")
                 puts "This one was designed for you!"
                 foundation_stick
-                goodbye
+                space 
+                sleep 1
+                puts "Would you like the product info?"
+                space
+                user_resp = gets.chomp.downcase 
+                    if user_resp.include?("yes")
+                        space
+                        sleep 1
+                        foundation_stick
+                        space 
+                        foundation_stick_info
+                        sleep 2
+                        space 
+                        goodbye
+                    else
+                        goodbye
+                    end
             elsif skin_info.include?("dry") && skin_info.include?("dewy")
                 puts "This one was designed for you!"
                 foundation
-                goodbye
+                space 
+                sleep 1
+                puts "Would you like the product info?"
+                space
+                user_resp = gets.chomp.downcase 
+                    if user_resp.include?("yes")
+                        space
+                        sleep 1
+                        foundation
+                        space 
+                        foundation_info
+                        sleep 2
+                        space 
+                        goodbye
+                    else
+                        goodbye
+                    end
             elsif skin_info.include?("oily") && skin_info.include?("dewy")
                 puts "Hmm, I would put on a mattifying primer first, but this product would work!"
                 foundation
-                goodbye
+                space 
+                sleep 1
+                puts "Would you like the product info?"
+                space
+                user_resp = gets.chomp.downcase 
+                    if user_resp.include?("yes")
+                        space
+                        sleep 1
+                        foundation
+                        space 
+                        foundation_info
+                        sleep 2
+                        space 
+                        goodbye
+                    else
+                        goodbye
+                    end
             elsif skin_info.include?("combo") && skin_info.include?("dewy")
                 puts "Hmm, I would put on a mattifying primer first, but this product would work!"
                 foundation
-                goodbye
+                space 
+                sleep 1
+                puts "Would you like the product info?"
+                space
+                user_resp = gets.chomp.downcase 
+                    if user_resp.include?("yes")
+                        space
+                        sleep 1
+                        foundation
+                        space 
+                        foundation_info
+                        sleep 2
+                        space 
+                        goodbye
+                    else
+                        goodbye
+                    end
             elsif skin_info.include?("combo") && skin_info.include?("matte")
                 puts "This one was designed for you!"
                 foundation_stick
-                goodbye
+                space 
+                sleep 1
+                puts "Would you like the product info?"
+                space
+                user_resp = gets.chomp.downcase 
+                    if user_resp.include?("yes")
+                        space
+                        sleep 1
+                        foundation_stick
+                        space 
+                        foundation_stick_info
+                        sleep 2
+                        space 
+                        goodbye
+                    else
+                        goodbye
+                    end
             else
                 puts "Hmm, did you make a mistake?"
                 puts " "
@@ -197,15 +363,100 @@ class CLI
         space
         product_choice = gets.chomp.downcase
         if product_choice.include?("lipstick") || product_choice == "1"
-            lipstick
+            space 
+            lipstick 
+            space 
+            sleep 1
+            puts "Would you like the product info?"
+            space
+            user_resp = gets.chomp.downcase 
+                if user_resp.include?("yes")
+                    space
+                    sleep 1
+                    lipstick
+                    space 
+                    lipstick_info
+                    sleep 2
+                    goodbye
+                else
+                    goodbye
+                end
         elsif product_choice.include?("eyeliner") || product_choice == "2"
-            eyeliner
+            space 
+            eyeliner 
+            space 
+            sleep 1
+            puts "Would you like the product info?"
+            space
+            user_resp = gets.chomp.downcase 
+                if user_resp.include?("yes")
+                    space
+                    sleep 1
+                    eyeliner
+                    space 
+                    eyeliner_info
+                    sleep 2
+                    goodbye
+                else
+                    goodbye
+                end
         elsif product_choice.include?("lip gloss") || product_choice.include?("lip glitter") || product_choice == "3"
-            lipgloss
+            space 
+            lipgloss 
+            space 
+            sleep 1
+            puts "Would you like the product info?"
+            space
+            user_resp = gets.chomp.downcase 
+                if user_resp.include?("yes")
+                    space
+                    sleep 1
+                    lipgloss
+                    space 
+                    lipgloss_info
+                    sleep 2
+                    goodbye
+                else
+                    goodbye
+                end
         elsif product_choice.include?("match stix") || product_choice.include?("matte skinstick") || product_choice == "4"
-            foundation_stick
+            space 
+            foundation_stick 
+            space 
+            sleep 1
+            puts "Would you like the product info?"
+            space
+            user_resp = gets.chomp.downcase 
+                if user_resp.include?("yes")
+                    space
+                    sleep 1
+                    foundation_stick
+                    space 
+                    foundation_stick_info
+                    sleep 2
+                    goodbye
+                else
+                    goodbye
+                end
         elsif product_choice.include?("pro") || product_choice.include?("soft") || product_choice == "foundation" || product_choice == "5"
-            foundation
+            space 
+            foundation 
+            space 
+            sleep 1
+            puts "Would you like the product info?"
+            space
+            user_resp = gets.chomp.downcase 
+                if user_resp.include?("yes")
+                    space
+                    sleep 1
+                    foundation
+                    space 
+                    foundation_info
+                    sleep 2
+                    goodbye
+                else
+                    goodbye
+                end
         else
             goodbye
         end 
@@ -215,20 +466,40 @@ class CLI
         MakeUp.select_product("lipstick")
     end
 
+    def lipstick_info
+        MakeUp.select_product_info("lipstick")
+    end
+
     def lipgloss
         MakeUp.select_product_uniq("lip_gloss")
+    end
+
+    def lipgloss_info
+        MakeUp.select_product_uniq_info("lip_gloss")
     end
 
     def eyeliner
         MakeUp.select_product("eyeliner")
     end
 
+    def eyeliner_info
+        MakeUp.select_product_info("eyeliner")
+    end
+
     def foundation
-        MakeUp.select_product("foundation")
+        MakeUp.select_found(780) #utilizing the product id in order to pull the correct info
+    end
+
+    def foundation_info
+        MakeUp.select_found_info(780) #utilizing the product id in order to pull the correct info
     end
 
     def foundation_stick
         MakeUp.select_product_uniq("concealer")
+    end
+
+    def foundation_stick_info
+        MakeUp.select_product_uniq_info("concealer")
     end
 
     def encouragement

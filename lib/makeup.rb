@@ -1,6 +1,6 @@
 class MakeUp 
     #keeps trach of makeup attributes and saves all the foundations 
-    attr_accessor :id, :name, :price, :product_cat, :description, :product_uniq
+    attr_accessor :product_id, :name, :price, :product_cat, :description, :product_uniq
     
     @@all = []
     
@@ -23,7 +23,27 @@ class MakeUp
     end 
 
     def self.select_product_uniq(name)
-        product = MakeUp.all.find{|prod| prod.product_uniq == name}
-        puts "#{product.name}"
+        item = MakeUp.all.find{|prod| prod.product_uniq == name}
+        puts "#{item.name}"
+    end 
+
+    def self.select_product_info(name)
+        product_info = MakeUp.all.find{|prod| prod.product_cat == name}
+        puts "#{product_info.description}"
+    end 
+
+    def self.select_product_uniq_info(name)
+        item_info = MakeUp.all.find{|prod| prod.product_uniq == name}
+        puts "#{item_info.description}"
+    end
+
+    def self.select_found(name)
+        selection = MakeUp.all.find{|prod| prod.product_id == name}
+        puts "#{selection.name}"
+    end 
+
+    def self.select_found_info(name)
+        selection_info = MakeUp.all.find{|prod| prod.product_id == name}
+        puts "#{selection_info.description}"
     end 
 end 

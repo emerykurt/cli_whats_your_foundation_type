@@ -2,6 +2,7 @@ require 'pry'
 require 'json'
 class API 
     #makes calls to api
+    attr_accessor :product_id, :name, :price, :product_cat, :description, :product_uniq
 
     def self.fetch_makeup
 
@@ -13,7 +14,7 @@ class API
             #initialize a new drink
             makeup_inst = MakeUp.new 
             #assign attributes to id
-            makeup_inst.id = makeup_cat["id"]
+            makeup_inst.product_id = makeup_cat["id"]
             makeup_inst.name = makeup_cat["name"]
             makeup_inst.price = makeup_cat["price"]
             makeup_inst.description = makeup_cat["description"]
