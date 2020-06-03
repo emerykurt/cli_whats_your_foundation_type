@@ -1,5 +1,5 @@
-require '/Users/emerylumsden/Development/cli_whats_your_foundation_type/environment.rb'
-require_relative './api.rb'
+# require '/Users/emerylumsden/Development/cli_whats_your_foundation_type/environment.rb'
+# require_relative './api.rb'
 class CLI  
     #interacts with user 
         #ask the user what skin type do they have (options :dry, oily, combination)
@@ -28,31 +28,24 @@ class CLI
         puts "Option 4: I like them all!"
         puts " "
         user_input = gets.chomp.downcase 
-        space 
-        if user_input.include?("exit") || user_input.include?("end")
+        space
+        case 
+        when user_input.include?("exit") || user_input.include?("end")
             goodbye
-        elsif user_input.include?("I don't have one") || user_input.include?("none")
+        when user_input.include?("I don't have one") || user_input.include?("none")
             encouragement
-        elsif user_input.include?("eyes") || user_input == "1"
+        when user_input.include?("eyes") || user_input.include?("1")
             self.eyes 
-        elsif user_input.include?("lips") || user_input == "2"
+        when user_input.include?("lips") || user_input.include?("2")
             self.lips 
-        elsif user_input.include?("skin") || user_input == "3"
+        when user_input.include?("skin") || user_input.include?("3")
             puts "You must share with me your skin care routine later!"
             space 
             self.skin 
-        elsif user_input == "4" || user_input.include?("I like them all") || user_input.include?("all")
+        when user_input.include?("4") || user_input.include?("I like them all") || user_input.include?("all")
             self.face  
         else
            goodbye_smart
-        end
-    end
-
-    def display_all_the_makeup
-        #access all the makeup
-        #print each one out
-        MakeUp.all.each_with_index do |makeup, index|
-            puts "#{index + 1}. #{makeup.name}"
         end
     end
 
@@ -86,8 +79,7 @@ class CLI
                     goodbye
                 else
                     goodbye
-                end
-            goodbye 
+                end 
         else
             goodbye
         end
@@ -99,7 +91,8 @@ class CLI
         puts "Do we like a glossy fun lip or do we prefer a sophistcated lip."
         space 
         lip_choice = gets.chomp.downcase
-            if lip_choice.include?("fun") || lip_choice.include?("glossy")
+            case
+            when lip_choice.include?("fun") || lip_choice.include?("glossy")
                 puts "You have to try this!"
                 space 
                 lipgloss 
@@ -119,7 +112,7 @@ class CLI
                     else
                         goodbye
                     end
-            elsif lip_choice.include?("sophisticated")
+            when lip_choice.include?("sophisticated")
                 puts "I think this would be your speed!"
                 space 
                 lipstick 
@@ -139,7 +132,7 @@ class CLI
                     else
                         goodbye
                     end
-            elsif lip_choice.include?("both") || lip_choice.include?("combination")
+            when lip_choice.include?("both") || lip_choice.include?("combination")
                 puts "I love this mentality! Here is the information for both!"
                 space 
                 lipstick 
@@ -185,7 +178,8 @@ class CLI
         space 
         skin_info = gets.chomp.downcase
         space 
-            if skin_info.include?("dry") && skin_info.include?("matte")
+        case
+        when skin_info.include?("dry") && skin_info.include?("matte")
                 puts "You want to load up on moisturizer first, but this would be your perfect product."
                 sleep 1
                 space 
@@ -207,7 +201,7 @@ class CLI
                     else
                         goodbye
                     end
-            elsif skin_info.include?("oily") && skin_info.include?("matte")
+        when skin_info.include?("oily") && skin_info.include?("matte")
                 puts "This one was designed for you!"
                 foundation_stick
                 space 
@@ -227,7 +221,7 @@ class CLI
                     else
                         goodbye
                     end
-            elsif skin_info.include?("dry") && skin_info.include?("dewy")
+        when skin_info.include?("dry") && skin_info.include?("dewy")
                 puts "This one was designed for you!"
                 foundation
                 space 
@@ -247,7 +241,7 @@ class CLI
                     else
                         goodbye
                     end
-            elsif skin_info.include?("oily") && skin_info.include?("dewy")
+        when skin_info.include?("oily") && skin_info.include?("dewy")
                 puts "Hmm, I would put on a mattifying primer first, but this product would work!"
                 foundation
                 space 
@@ -267,7 +261,7 @@ class CLI
                     else
                         goodbye
                     end
-            elsif skin_info.include?("combo") && skin_info.include?("dewy")
+        when skin_info.include?("combo") && skin_info.include?("dewy")
                 puts "Hmm, I would put on a mattifying primer first, but this product would work!"
                 foundation
                 space 
@@ -287,7 +281,7 @@ class CLI
                     else
                         goodbye
                     end
-            elsif skin_info.include?("combo") && skin_info.include?("matte")
+        when skin_info.include?("combo") && skin_info.include?("matte")
                 puts "This one was designed for you!"
                 foundation_stick
                 space 
@@ -307,7 +301,7 @@ class CLI
                     else
                         goodbye
                     end
-            else
+        else
                 puts "Hmm, did you make a mistake?"
                 puts " "
                 user_input_final = gets.chomp.downcase 
@@ -357,12 +351,21 @@ class CLI
         end
     end
 
+    def display_all_the_makeup
+        #access all the makeup
+        #print each one out
+        MakeUp.all.each_with_index do |makeup, index|
+            puts "#{index + 1}. #{makeup.name}"
+        end
+    end
+
     def choice_of_product
         space 
         puts "Which one were you interested in looking at?"
         space
         product_choice = gets.chomp.downcase
-        if product_choice.include?("lipstick") || product_choice == "1"
+        case
+        when product_choice.include?("lipstick") || product_choice == "1"
             space 
             lipstick 
             space 
@@ -381,7 +384,7 @@ class CLI
                 else
                     goodbye
                 end
-        elsif product_choice.include?("eyeliner") || product_choice == "2"
+        when product_choice.include?("eyeliner") || product_choice == "2"
             space 
             eyeliner 
             space 
@@ -400,7 +403,7 @@ class CLI
                 else
                     goodbye
                 end
-        elsif product_choice.include?("lip gloss") || product_choice.include?("lip glitter") || product_choice == "3"
+        when product_choice.include?("lip gloss") || product_choice.include?("lip glitter") || product_choice == "3"
             space 
             lipgloss 
             space 
@@ -419,7 +422,7 @@ class CLI
                 else
                     goodbye
                 end
-        elsif product_choice.include?("match stix") || product_choice.include?("matte skinstick") || product_choice == "4"
+        when product_choice.include?("match stix") || product_choice.include?("matte skinstick") || product_choice == "4"
             space 
             foundation_stick 
             space 
@@ -438,7 +441,7 @@ class CLI
                 else
                     goodbye
                 end
-        elsif product_choice.include?("pro") || product_choice.include?("soft") || product_choice == "foundation" || product_choice == "5"
+        when product_choice.include?("pro") || product_choice.include?("soft") || product_choice == "foundation" || product_choice == "5"
             space 
             foundation 
             space 
@@ -502,16 +505,6 @@ class CLI
         MakeUp.select_product_uniq_info("concealer")
     end
 
-    def encouragement
-        puts "Makeup up is not meant to recreate, but to enhance." 
-            sleep 1
-            puts "Take a second, look in the mirror or take a selfie, tell yourself you are beautiful."
-            sleep 1
-            puts "Repeat those steps until you see how beautiful we think you are!"
-            sleep 1
-            puts "See you soon!"
-    end
-
     def tab
         puts " "
         sleep 1
@@ -536,6 +529,16 @@ class CLI
         end
     end
     
+    def encouragement
+        puts "Makeup up is not meant to recreate, but to enhance." 
+            sleep 1
+            puts "Take a second, look in the mirror or take a selfie, tell yourself you are beautiful."
+            sleep 1
+            puts "Repeat those steps until you see how beautiful we think you are!"
+            sleep 1
+            puts "See you soon!"
+    end
+
     def goodbye
         space
         sleep 1

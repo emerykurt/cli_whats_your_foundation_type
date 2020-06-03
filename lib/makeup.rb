@@ -4,7 +4,8 @@ class MakeUp
     
     @@all = []
     
-    def initialize 
+    def initialize
+        # @price = price
         @@all << self
     end
 
@@ -16,6 +17,10 @@ class MakeUp
     #name of product => "name"
     #price of product => "price"
     #product description => "description"
+
+    # def whatever
+    #   puts "price"
+    # end
 
     def self.select_product(name)
         product = MakeUp.all.find{|prod| prod.product_cat == name}
